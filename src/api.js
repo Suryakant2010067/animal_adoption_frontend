@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE || 'https://animal-adoption-backend.onrender.com/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://animal-adoption-backend-si97.onrender.com/api'
 
 export async function fetchAnimals(species = 'all') {
   const url = species === 'all'
