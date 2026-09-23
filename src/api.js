@@ -15,6 +15,12 @@ export async function fetchAnimal(id) {
   return res.json()
 }
 
+export async function fetchAdoptions() {
+  const res = await fetch(`${API_BASE}/adoptions`)
+  if (!res.ok) throw new Error('Failed to fetch adoption requests')
+  return res.json()
+}
+
 export async function submitAdoption(data) {
   const res = await fetch(`${API_BASE}/adoptions`, {
     method: 'POST',

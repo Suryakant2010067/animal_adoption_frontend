@@ -17,17 +17,25 @@ export default function Home() {
   return (
     <>
       <section className="hero">
+        <div className="hero-bg-shape" aria-hidden />
         <div className="container hero-inner">
           <div className="hero-content">
-            <span className="hero-badge">🐾 Find Your New Best Friend</span>
-            <h1>Give a Loving Home to a Pet in Need</h1>
+            <span className="hero-badge">B.Tech Final Year · Major Project</span>
+            <h1>Smart Animal Adoption Platform</h1>
             <p>
-              PawHome connects rescued dogs, cats, and rabbits with caring families.
-              Browse our available pets and start your adoption journey today.
+              PawHome is a full-stack web application — React frontend, Java Spring Boot
+              backend, REST API, and database — built to connect rescued pets with loving homes.
             </p>
             <div className="hero-actions">
               <Link to="/animals" className="btn btn-primary btn-lg">Browse Pets</Link>
-              <Link to="/about" className="btn btn-outline btn-lg">Learn More</Link>
+              <Link to="/admin" className="btn btn-outline btn-lg">View Submissions</Link>
+            </div>
+            <div className="tech-pills">
+              <span>React</span>
+              <span>Java</span>
+              <span>Spring Boot</span>
+              <span>REST API</span>
+              <span>Docker</span>
             </div>
           </div>
           <div className="hero-image">
@@ -42,20 +50,20 @@ export default function Home() {
       <section className="stats">
         <div className="container stats-grid">
           <div className="stat-item">
-            <strong>500+</strong>
-            <span>Pets Adopted</span>
+            <strong>8+</strong>
+            <span>Rescue Pets Listed</span>
           </div>
           <div className="stat-item">
-            <strong>50+</strong>
-            <span>Rescue Partners</span>
+            <strong>REST</strong>
+            <span>API Architecture</span>
           </div>
           <div className="stat-item">
             <strong>100%</strong>
-            <span>Vaccinated Pets</span>
+            <span>Form → Database</span>
           </div>
           <div className="stat-item">
-            <strong>24hr</strong>
-            <span>Response Time</span>
+            <strong>Live</strong>
+            <span>Cloud Deployed</span>
           </div>
         </div>
       </section>
@@ -63,11 +71,16 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="section-header">
-            <h2>Featured Pets</h2>
-            <p>Meet some of our adorable friends waiting for a home</p>
+            <span className="section-label">Featured</span>
+            <h2>Pets Waiting for a Home</h2>
+            <p>Data loaded dynamically from the Spring Boot backend</p>
           </div>
           {loading ? (
-            <p className="loading-text">Loading pets...</p>
+            <div className="animal-grid">
+              {[1, 2, 3].map(n => (
+                <div key={n} className="skeleton-card" />
+              ))}
+            </div>
           ) : (
             <div className="animal-grid">
               {featured.map(animal => (
@@ -84,24 +97,25 @@ export default function Home() {
       <section className="how-it-works section section-alt">
         <div className="container">
           <div className="section-header">
+            <span className="section-label">Workflow</span>
             <h2>How Adoption Works</h2>
-            <p>Three simple steps to bring your new companion home</p>
+            <p>End-to-end flow you can explain in your project viva</p>
           </div>
           <div className="steps-grid">
             <div className="step-card">
               <div className="step-num">1</div>
               <h3>Browse</h3>
-              <p>Explore our list of available dogs, cats, and rabbits.</p>
+              <p>Frontend fetches pet list from <code>GET /api/animals</code>.</p>
             </div>
             <div className="step-card">
               <div className="step-num">2</div>
               <h3>Apply</h3>
-              <p>Fill out the adoption form for the pet you love.</p>
+              <p>Form data is posted to <code>POST /api/adoptions</code>.</p>
             </div>
             <div className="step-card">
               <div className="step-num">3</div>
-              <h3>Adopt</h3>
-              <p>Meet your pet and welcome them into your family!</p>
+              <h3>Review</h3>
+              <p>Admin dashboard shows all records from the database.</p>
             </div>
           </div>
         </div>

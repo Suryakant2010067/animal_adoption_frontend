@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { submitAdoption } from '../api'
 
 export default function AdoptionForm({ animal }) {
@@ -22,7 +23,10 @@ export default function AdoptionForm({ animal }) {
     setStatus({ type: '', message: '' })
     try {
       await submitAdoption({ ...form, animalId: animal.id })
-      setStatus({ type: 'success', message: `Thank you! Your adoption request for ${animal.name} has been submitted.` })
+      setStatus({
+        type: 'success',
+        message: `Request saved in the database for ${animal.name}. Our team will contact you within 24 hours.`,
+      })
       setForm({ adopterName: '', email: '', phone: '', address: '', message: '' })
     } catch (err) {
       setStatus({ type: 'error', message: err.message })
@@ -33,11 +37,20 @@ export default function AdoptionForm({ animal }) {
 
   return (
     <form className="adoption-form" onSubmit={handleSubmit}>
-      <h3>Adopt {animal.name}</h3>
-      <p className="form-subtitle">Fill in your details and we&apos;ll get in touch within 24 hours.</p>
+      <div className="form-header">
+        <h3>Adopt {animal.name}</h3>
+        <p className="form-subtitle">
+          Your details are sent securely to our Java backend and stored in the database.
+        </p>
+      </div>
 
       {status.message && (
-        <div className={`alert alert-${status.type}`}>{status.message}</div>
+        <div className={`alert alert-${status.type}`}>
+          {status.message}
+          {status.type === 'success' && (
+            <Link to="/admin" className="alert-link">View in Admin Dashboard →</Link>
+          )}
+        </div>
       )}
 
       <div className="form-group">
@@ -72,7 +85,7 @@ export default function AdoptionForm({ animal }) {
       </div>
 
       <button type="submit" className="btn btn-primary btn-block" disabled={submitting}>
-        {submitting ? 'Submitting...' : 'Submit Adoption Request'}
+        {submitting ? 'Saving to database…' : 'Submit Adoption Request'}
       </button>
     </form>
   )

@@ -1,11 +1,67 @@
+import { Link } from 'react-router-dom'
+
+const STACK = [
+  { title: 'Frontend', items: ['React 18', 'React Router', 'HTML5 & CSS3', 'Vite'] },
+  { title: 'Backend', items: ['Java 17', 'Spring Boot 3', 'Spring Data JPA', 'REST API'] },
+  { title: 'Database', items: ['H2 (in-memory)', 'JPA Entities', 'adoption_requests table'] },
+  { title: 'DevOps', items: ['Docker', 'Render (Backend)', 'GitHub', 'Vercel (Frontend)'] },
+]
+
 export default function About() {
   return (
     <>
-      <section className="page-header-section section">
+      <section className="page-hero">
         <div className="container">
-          <div className="page-header">
-            <h1>About PawHome</h1>
-            <p>Connecting rescued animals with loving families since 2020</p>
+          <span className="section-label">Project Overview</span>
+          <h1>PawHome — Major Project</h1>
+          <p>
+            A full-stack animal adoption system demonstrating modern web development,
+            API design, and cloud deployment for academic evaluation.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Technology Stack</h2>
+            <p>Modules and tools used in this project</p>
+          </div>
+          <div className="stack-grid">
+            {STACK.map(block => (
+              <div key={block.title} className="stack-card">
+                <h3>{block.title}</h3>
+                <ul>
+                  {block.items.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-alt">
+        <div className="container">
+          <div className="flow-card">
+            <h2>Where does form data go?</h2>
+            <ol className="flow-steps">
+              <li>User fills the adoption form on the React website.</li>
+              <li>
+                Frontend sends JSON to{' '}
+                <code>POST /api/adoptions</code> on the Spring Boot server (Render).
+              </li>
+              <li>
+                Backend validates input and saves a row in the{' '}
+                <code>adoption_requests</code> database table (linked to the pet).
+              </li>
+              <li>
+                Admin opens <Link to="/admin">/admin</Link> to view all submissions via{' '}
+                <code>GET /api/adoptions</code>.
+              </li>
+            </ol>
+            <Link to="/admin" className="btn btn-primary">Open Admin Dashboard</Link>
           </div>
         </div>
       </section>
@@ -13,23 +69,19 @@ export default function About() {
       <section className="section">
         <div className="container about-grid">
           <div className="about-text">
-            <h2>Our Mission</h2>
+            <h2>Problem Statement</h2>
             <p>
-              PawHome is an animal adoption platform dedicated to finding permanent,
-              loving homes for rescued dogs, cats, and rabbits. We work with local shelters
-              and volunteers to ensure every pet gets the care and attention they deserve.
+              Many rescued animals remain in shelters because adoption processes are
+              fragmented and offline. PawHome digitizes pet discovery, online application,
+              and admin review in one platform.
             </p>
-            <p>
-              Every animal on our platform is health-checked, vaccinated, and ready to
-              become part of your family. Our adoption process is simple, transparent,
-              and designed to match the right pet with the right home.
-            </p>
-            <h2>Why Adopt?</h2>
+            <h2>Objectives</h2>
             <ul className="about-list">
-              <li>Save a life and reduce shelter overcrowding</li>
-              <li>Get a vaccinated, health-checked companion</li>
-              <li>Support ethical pet ownership</li>
-              <li>Gain a loyal friend who will love you unconditionally</li>
+              <li>Display available pets with search/filter by species</li>
+              <li>Collect adoption applications through validated forms</li>
+              <li>Persist data using a relational database via JPA</li>
+              <li>Expose REST APIs for frontend integration</li>
+              <li>Deploy using Docker and cloud hosting</li>
             </ul>
           </div>
           <div className="about-image">

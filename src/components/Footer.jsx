@@ -11,6 +11,7 @@ export default function Footer() {
           <h4>Quick Links</h4>
           <a href="/animals">Browse Pets</a>
           <a href="/about">About Us</a>
+          <a href="/admin">Admin Dashboard</a>
         </div>
         <div className="footer-contact">
           <h4>Contact</h4>

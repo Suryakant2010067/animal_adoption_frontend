@@ -23,8 +23,9 @@ export default function Animals() {
     <section className="section page-header-section">
       <div className="container">
         <div className="page-header">
+          <span className="section-label">Adoption</span>
           <h1>Available Pets</h1>
-          <p>Find the perfect companion for your family</p>
+          <p>Live data from Spring Boot REST API — filter by species</p>
         </div>
 
         <div className="filter-bar">
